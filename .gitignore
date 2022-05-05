@@ -1,1 +1,4 @@
 /venv
+/terraform/variables.tf
+/terraform/.*
+*.json
