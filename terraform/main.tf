@@ -2,16 +2,19 @@ terraform {
   required_version = ">=1.0"
   backend "local" {}
   required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "3.5.0"
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.27"
     }
   }
 }
 
-provider "google" {
-  credentials = file(var.credentials)
-  project     = var.project
-  region      = var.region
-  zone        = var.zone
+provider "aws" {
+  profile = "default"
+  region  = var.region
+
+}
+
+resource "aws_s3_bucket" "bucket" {
+  bucket = "streamify"
 }
