@@ -4,3 +4,5 @@
 *.json
 *.tfstate*
 /eventism/data/*
+*.csv
+/kafka/produce_taxi.py
