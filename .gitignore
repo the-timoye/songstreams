@@ -3,3 +3,4 @@
 /terraform/.*
 *.json
 *.tfstate*
+/eventism/data/*
