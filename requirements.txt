@@ -1,0 +1,7 @@
+autopep8==1.6.0
+kafka-python==2.0.2
+py4j==0.10.9.3
+pycodestyle==2.8.0
+pyspark==3.2.1
+python-dotenv==0.20.0
+toml==0.10.2
