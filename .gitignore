@@ -6,3 +6,5 @@
 /eventism/data/*
 *.csv
 /kafka/produce_taxi.py
+.env
+/spark/streams/*
