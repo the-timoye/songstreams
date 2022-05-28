@@ -8,3 +8,4 @@
 /kafka/produce_taxi.py
 .env
 /spark/streams/*
+/spark/__pycache__
