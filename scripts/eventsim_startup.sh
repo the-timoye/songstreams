@@ -7,7 +7,7 @@ sudo docker build -t events:1.0 .
 echo "Running Eventsim in detached mode..."
 sudo docker run -itd \
   --network host \
-  --name million_events_2 \
+  --name million_events \
   --memory="5.5g" \
   --memory-swap="7g" \
   --oom-kill-disable \
