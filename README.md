@@ -1,5 +1,14 @@
-# SONG STREAMS
+# SONGSTREAMS
+Data Engineering on a simulated song streaming application with Kafka, PySpark, dbt, S3, Redshift.
 
+### Assumption: 
+Streamify is a music streaming company that joys in the satisfaction of their users. The intelligence of the application is derived from the team of Data Techies who track, monitor, and filter out playlists uniquely for each user, making it less probable for a user to skip through a track because this app knows them so well.
+
+Some common question asked by the Business Intelligence team are:
+- What song/genre does user A play the most? <br>
+- What artists are listened to the most by each user? <br>
+- At what time are these particular artists listened to? <br>
+- Most played songs per location <br>
 
 ## Tools
 ### Infrastructure as Code (Provisioning)
@@ -49,3 +58,10 @@ The below are topics produced by the eventsim application, read via kafka, witte
 - auth events
         `"{\"ts\":1653763925000,\"sessionId\":1860140,\"level\":\"paid\",\"itemInSession\":3,\"city\":\"Costa Mesa\",\"zip\":\"92626\",\"state\":\"CA\",\"userAgent\":\"\\\"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36\\\"\",\"lon\":-117.911715,\"lat\":33.678399,\"userId\":505067,\"lastName\":\"Schmidt\",\"firstName\":\"Jordan\",\"gender\":\"M\",\"registration\":1575708411000,\"success\":true}"`
 
+## Data Storage
+
+### Data Lake (AWS S3)
+The raw, uncleaned, unprocessed data is stored directly in the Data lake (S3) using Apache  Spark Streaming.
+This is to ensure that:
+- Data Scientists, ML Engineers get to do their deep iterations without having to slow down or kill the Warehouse.
+- Since building a Warehouse will involve a lot of processing, there may be some descripancy along the line. The lake serves as an option to fall back to when the quality of the data is being tested.
