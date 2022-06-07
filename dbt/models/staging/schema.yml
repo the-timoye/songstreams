@@ -6,6 +6,8 @@ models:
     docs: 
       show: true
     columns:
+      - name: id
+        description: auto generated identifier
       - name: song_id
         description: song identifier
         tests:
@@ -65,7 +67,7 @@ models:
     tests:
       - not null
     columns:
-      - name: songId
+      - name: id
         description: Identifier.
         tags: ['songs', 'staging', 'identifier']
       - name: song
@@ -77,3 +79,117 @@ models:
       - name: artist_name
         description: name of the artist of the sonf.
         tags: ['song', 'staging', 'artist']
+  - name: users
+    description: users in the app. listeners and non-listeners
+    docs:
+      show: true
+    tests:
+      - not null
+    columns:
+      - name: id
+        description: auto generated identifier for table
+        tags: ['identifier', 'staging', 'users']
+      - name: user_id
+        description: identifier
+        tags: ['identifier', 'staging', 'users']
+      - name: first_name
+        description: user's first name
+        tags: ['staging', 'users']
+      - name: last_name
+        description: user's last name
+        tags: ['staging', 'users']
+      - name: city
+        description: user's city (name)
+        tags: ['staging', 'users', 'location']
+      - name: zip
+        description: user's zip code
+        tags: ['staging', 'users', 'location']
+      - name: state
+        description: user's state
+        tags: ['staging', 'users', 'location']
+      - name: latitude
+        description: latitudinal address
+        tags: ['staging', 'users', 'location']
+      - name: longitude
+        description: longitudinal address
+        tags: ['staging', 'users', 'longitude']
+      - name: gender
+        description: user's gender
+        tags: ['staging', 'users', 'gender']
+      - name: address_id
+        description: (identifier) user's address
+        tags: ['staging', 'users', 'location']
+      - name: registration
+  - name: artist
+    description: distinct artists found in the application
+    docs:
+      show: true
+    columns:
+      - name: id
+        description: identifier
+        tags: ['staging', 'artists', 'identifier']
+        tests:
+          - not null
+      - name: name
+        description: name of the artist
+        tags: ['artist', 'staging']
+  - name: addresses
+    descriptions: distinct addresses (city & state)
+    docs:
+      show: true
+    columns:
+      - name: id
+        description: identifier
+        tags: ['staging', 'addresses', 'identifier']
+        tests:
+          - not null
+      - name: city
+        description: city
+        tags: ['staging', 'addresses', 'location']
+      - name: state
+        description: state
+        tags: ['staging', 'addresses', 'location']
+        tests:
+          - not null
+  - name: users_events
+    description: events carried out by all users
+    docs:
+      show: true
+    columns:
+      - name: id
+        description: (int)
+        tags: ['staging', 'user events']
+      - name: user_id
+        description: (int) identofier
+        tags: ['staging', 'user events', 'idenifier']
+      - name: method
+        description: (str) http methods
+        tags: ['staging', 'user events']
+      - name: page_visited
+        description: (str)
+        tags: ['staging', 'user events']
+      - name: session_id
+        description: (int)
+        tags: ['staging', 'user events']
+      - name: status
+        description: (int) status codes e.g. 200, 404
+        tags: ['staging', 'user events']
+      - name: user_agent
+        description: (str) user's system configurations & browser details
+        tags: ['staging', 'user events']
+      - name: level
+        description: (str) paid | free
+        tags: ['staging', 'user events']
+      - name: page
+        description: (str) valid only if event was a page view
+        tags: ['staging', 'user events']
+      - name: timestamp
+        description: (bigint) time stamp
+        tags: ['staging', 'user events', 'time']
+      - name: item_in_session
+        description: (int)
+        tags: ['staging', 'user events']
+      - name: event
+        description: (str) usually a page view, auth or a listen event
+        tags: ['staging', 'user events']
+  - name: times
