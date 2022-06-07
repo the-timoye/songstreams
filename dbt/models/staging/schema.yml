@@ -1,0 +1,79 @@
+version: 2
+
+models:
+  - name: songs_played
+    description: Fact table. Records all songs played via the application.
+    docs: 
+      show: true
+    columns:
+      - name: song_id
+        description: song identifier
+        tests:
+          - not null
+        tags: ['songs_played', 'song']
+      - name: artist_id
+        description: artist identifier
+        tests:
+          - not null
+        tags: ['songs_played', 'artist', 'identity']
+      - name: user_id
+        description: user identifier
+        tests:
+          - not null
+        tags: ['songs_played', 'user', 'identity']
+      - name: session_id
+        description: session identifier
+        tests:
+          - not null
+        tags: ['songs_played', 'session', 'identity']
+      - name: duration
+        description: measures how long the song spans
+        tests:
+          - not null
+        tags: ['songs_played', 'songs', 'time', 'duration']
+      - name: address_id
+        description: address identifier
+        tests:
+          - not null
+        tags: ['songs_played', 'address', 'identifier']
+      - name: timestamp
+        description: time song was played
+        tests:
+          - not null
+        tags: ['songs_played', 'song', 'time']
+      - name: level_id
+        description: level identifier. Possible values are 'paid', 'free'
+        tests:
+          - not null
+        tags: ['songs_played', 'user', 'song', 'level']
+      - name: item_in_session
+        tags: ['songs_played', 'user']
+      - name: longitude
+        description: (long) location the song was played
+        tests:
+          - not null
+        tags: ['songs_played', 'user']
+      - name: latitude
+        description: (lat) location the song was played
+        tests:
+          - not null
+        tags: ['songs_played', 'location', 'user', 'address', song]
+  - name: songs
+    description: Dim table. Distinct songs played (available) on the app
+    docs:
+      show: true
+    tests:
+      - not null
+    columns:
+      - name: songId
+        description: Identifier.
+        tags: ['songs', 'staging', 'identifier']
+      - name: song
+        description: song title.
+        tags: ['songs', 'staging']
+      - name: artistId
+        description: Identifier.
+        tags: ['songs', 'staging', 'identifier', 'artist']
+      - name: artist_name
+        description: name of the artist of the sonf.
+        tags: ['song', 'staging', 'artist']
