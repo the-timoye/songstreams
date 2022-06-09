@@ -9,3 +9,4 @@
 .env
 /spark/streams/*
 /spark/__pycache__
+/logs
