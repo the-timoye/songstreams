@@ -1,4 +1,4 @@
-from pyspark.sql.functions import from_json, col, month, hour, dayofmonth, col, year
+from pyspark.sql.functions import from_json, col, month, hour, dayofmonth, col, year, dayofweek
 
 from lake.helpers import rename_columns, string_decode
 
@@ -29,7 +29,7 @@ class Stream():
     def write(stream, path, format, topic):
         response = stream.writeStream\
             .format(format)\
-            .partitionBy('month', 'day')\
+            .partitionBy('__state', '__month', '__day_of_week')\
             .option("header", True)\
             .option("path", f'{path}/{topic}')\
             .option("checkpointLocation", f'{path}/checkpoint/{topic}')\
@@ -49,8 +49,13 @@ class Stream():
         raw_response = raw_response.withColumn("ts", (col("ts")/1000).cast("timestamp"))\
             .withColumn("year", year(col("ts")))\
             .withColumn("month", month(col("ts")))\
+            .withColumn("__month", month(col("ts")))\
             .withColumn("hour", hour(col("ts")))\
-            .withColumn("day", dayofmonth(col("ts")))
+            .withColumn("__state", (col("state")))\
+            .withColumn("day", dayofmonth(col("ts")))\
+            .withColumn("day_of_week", dayofweek('ts'))\
+            .withColumn("__day_of_week", dayofweek('ts'))\
+            .withColumn("is_weekend", dayofweek("ts").isin[1, 7]).cast("boolean")
 
         clean_response = rename_columns(raw_response, new_column_names)
         if topic in ["listen_events", "page_view_events"]:
