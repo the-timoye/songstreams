@@ -40,7 +40,7 @@ Some common question asked by the Business Intelligence team are:
 - it may take a while to see these topics reflect in your UI. But once it does, you'll have about four topics all together.
 
 ### Listen Via Spark
-- `cd spark && python spark.py`
+- `cd lake && python extraction.py`
 Spark reads data from the broker(s) every 120 seconds.
 Each read is saved in a new csv.
 The naming convention is sparks default - _partition_.csv,
