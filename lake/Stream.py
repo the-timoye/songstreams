@@ -1,4 +1,10 @@
-from pyspark.sql.functions import from_json, col, month, hour, dayofmonth, col, year, dayofweek
+from pyspark.sql.functions import (
+    from_json,
+    col, month,
+    hour,
+    dayofmonth,
+    col,
+    year, dayofweek, date_trunc)
 
 from lake.helpers import rename_columns, string_decode
 
@@ -49,13 +55,14 @@ class Stream():
         raw_response = raw_response.withColumn("ts", (col("ts")/1000).cast("timestamp"))\
             .withColumn("year", year(col("ts")))\
             .withColumn("month", month(col("ts")))\
+            .withColumn("abs_date", date_trunc("dd", col("ts")))\
             .withColumn("__month", month(col("ts")))\
             .withColumn("hour", hour(col("ts")))\
             .withColumn("__state", (col("state")))\
             .withColumn("day", dayofmonth(col("ts")))\
-            .withColumn("day_of_week", dayofweek('ts'))\
-            .withColumn("__day_of_week", dayofweek('ts'))\
-            .withColumn("is_weekend", dayofweek("ts").isin[1, 7]).cast("boolean")
+            .withColumn("day_of_week", dayofweek(col('ts')))\
+            .withColumn("__day_of_week", dayofweek(col('ts')))\
+            .withColumn("is_weekend", dayofweek(col("ts")).isin(1, 7).cast("boolean"))
 
         clean_response = rename_columns(raw_response, new_column_names)
         if topic in ["listen_events", "page_view_events"]:
