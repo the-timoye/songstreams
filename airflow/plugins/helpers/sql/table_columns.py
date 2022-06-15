@@ -1,6 +1,6 @@
 table_columns = {
     "listen_events": """
-        _id INTEGER IDENTITY PRIMARY KEY,
+        _id BIGINT IDENTITY(1, 1) PRIMARY KEY,
         artist VARCHAR NOT NULL,
         song VARCHAR NOT NULL,        
         session_id BIGINT NOT NULL,
@@ -11,8 +11,8 @@ table_columns = {
         zip INTEGER,
         state VARCHAR,
         user_agent VARCHAR,
-        longitude GEOMETRY,
-        latitude GEOMETRY,
+        longitude GEOGRAPHY,
+        latitude GEOGRAPHY,
         user_id INTEGER,
         last_name VARCHAR NOT NULL,
         first_name VARCHAR NOT NULL,
@@ -27,11 +27,11 @@ table_columns = {
         day_of_week SMALLINT,
         is_weekend BOOLEAN
     """,
-    "page_views": """
-        _id INTEGER IDENTITY PRIMARY KEY,
+    "page_view_events": """
+        _id BIGINT IDENTITY(1, 1) PRIMARY KEY,
         page VARCHAR NOT NULL,
-        method: VARCHAR NOT NULL,
-        status: INTEGER NOT NULL,
+        method VARCHAR NOT NULL,
+        status INTEGER NOT NULL,
         session_id BIGINT NOT NULL,
         auth VARCHAR NOT NULL,
         level VARCHAR NOT NULL,
@@ -40,8 +40,8 @@ table_columns = {
         zip INTEGER,
         state VARCHAR,
         user_agent VARCHAR,
-        longitude GEOMETRY,
-        latitude GEOMETRY,
+        longitude GEOGRAPHY,
+        latitude GEOGRAPHY,
         user_id INTEGER,
         last_name VARCHAR NOT NULL,
         first_name VARCHAR NOT NULL,
@@ -57,14 +57,14 @@ table_columns = {
         is_weekend BOOLEAN
     """,
     "auth_events": """
-        _id INTEGER IDENTITY PRIMARY KEY,
+        _id BIGINT IDENTITY(1,1) PRIMARY KEY,
         user_id INTEGER,
         last_name VARCHAR NOT NULL,
         first_name VARCHAR NOT NULL,
         gender CHAR,
         success BOOLEAN,
-        longitude GEOMETRY,
-        latitude GEOMETRY,
+        longitude GEOGRAPHY,
+        latitude GEOGRAPHY,
         session_id INTEGER NOT NULL,        
         level VARCHAR NOT NULL,
         item_in_session INTEGER NOT NULL,
