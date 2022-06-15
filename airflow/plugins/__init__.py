@@ -1,0 +1,1 @@
+from operators.S3ToRedshift import StageTablesOperator
