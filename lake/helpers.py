@@ -20,11 +20,12 @@ def rename_columns(df, columns: dict):
 @udf
 def string_decode(s, encoding='utf-8'):
     if s:
-        return (s.encode('latin1')
-                .decode('unicode-escape')
-                .encode('latin1')
-                .decode(encoding)
-                .strip('\"'))
-
+        s = s.replace("\\", "")
+        return s.replace('"', "")
     else:
         return s
+
+
+# "".encode("latin1").decode(
+#     "unicode-escape").encode("latin1").decode("utf-8").strip('\"')
+# "".str
