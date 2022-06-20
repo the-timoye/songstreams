@@ -50,20 +50,20 @@ raw_auth_events, clean_auth_events = Stream.process(
 
 # ======: WRITE RAW : ======
 
-Stream.write(raw_page_view_events, f'{raw_file_path}/page_view_events',
+Stream.write(raw_page_view_events, f"{raw_file_path}",
              'csv', topic='page_view_events').start()
-Stream.write(raw_auth_events, f'{raw_file_path}/auth_events', 'csv',
+Stream.write(raw_auth_events, f'{raw_file_path}', 'csv',
              topic='auth_events').start()
-Stream.write(raw_listen_events, f'{raw_file_path}/listen_events', 'csv',
+Stream.write(raw_listen_events, f'{raw_file_path}', 'csv',
              topic='listen_events').start()
 
 
 # ======: WRITE CLEANED : ======
-Stream.write(clean_page_view_events, f'{clean_file_path}/page_view_events',
+Stream.write(clean_page_view_events, f'{clean_file_path}',
              'csv', topic='page_view_events').start()
-Stream.write(clean_auth_events, f'{clean_file_path}/auth_events', 'csv',
+Stream.write(clean_auth_events, f'{clean_file_path}', 'csv',
              topic='auth_events').start()
-Stream.write(clean_listen_events, f'{clean_file_path}/listen_events', 'csv',
+Stream.write(clean_listen_events, f'{clean_file_path}', 'csv',
              topic='listen_events').start()
 
 spark.streams.awaitAnyTermination()
