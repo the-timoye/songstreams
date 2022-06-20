@@ -10,7 +10,7 @@ from helpers.sql.statements import Query
 S3_BUCKET = os.getenv("AWS_S3_BUCKET_CLEAN", "test-bucket")
 S3_KEY__AUTH_EVENTS = os.getenv("AUTH_EVENTS", "auth_events/auth_events")
 SCHEMA = "dev"
-DATABASE = "sonngstreams"
+DATABASE = "songstreams"
 
 tables = {"auth_events": "auth_events",
           "listen_events": "listen_events", "page_views": "page_view_events"}
@@ -21,8 +21,8 @@ default_args = {
     'email': ['timmine7@gmail.com'],
     'email_on_failure': True,
     'email_on_retry': True,
-    'retries': 2,
-    'retry_delay': timedelta(minutes=1)
+    'retries': 1,
+    'retry_delay': timedelta(seconds=30)
 }
 
 with DAG(
