@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: dev
+    description: 'Pull from dev'
+    database: songstreams
+    schema: dev
+    tables:
+      - name: auth_events
+      - name: page_view_events
+      - name: listen_events
