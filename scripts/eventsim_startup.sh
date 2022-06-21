@@ -13,7 +13,7 @@ sudo docker run -itd \
   --oom-kill-disable \
   events:1.0 \
     -c "examples/example-config.json" \
-    --start-time "`date +"%Y-%m-%dT%H:%M:%S"`" \
+    --start-time "`date -d "-1 hours" +"%Y-%m-%dT%H:%M:%S"`" \
     --end-time "`date -d "+1 days" +"%Y-%m-%dT%H:%M:%S"`" \
     --nusers 1000000 \
     --growth-rate 10 \
