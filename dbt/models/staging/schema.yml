@@ -15,9 +15,14 @@ models:
     description: 'songs available through the application'
     columns:
       - name: _id # auto generated
+        tests:
+          - unique
+          - not_null
+      - name: title
+        tests:
+          - not_null
       - name: artist_name
       - name: artist_id # ref auto generated artist_id in artists table
-      - name: duration
       
   - name: users
     columns:
