@@ -9,3 +9,93 @@ sources:
       - name: auth_events
       - name: page_view_events
       - name: listen_events
+
+models:
+  - name: songs
+    description: 'songs available through the application'
+    columns:
+      - name: _id # auto generated
+      - name: artist_name
+      - name: artist_id # ref auto generated artist_id in artists table
+      - name: duration
+      
+  - name: users
+    columns:
+      - name: _id # not auto generated
+      - name: first_name
+      - name: last_name
+      - name: full_name
+      - name: city
+      - name: zip
+      - name: state
+      - name: address_id # ref addresses table
+      - name: latitude
+      - name: longitude
+      - name: gender
+
+  - name: songs_played
+    columns:
+      - name: _id # auto generated
+      - name: song_id #ref songs table
+      - name: artist_id #ref artists table
+      - name: session_id
+      - name: duration
+      - name: address_id
+      - name: time_id #ref times table
+      - name: level_id # ref levels table
+      - name: item_in_session
+      - name: longitude
+      - name: latitude
+  - name: levels
+    columns:
+      - name: _id #auto generated
+      - name: level
+        tests:
+          - unique
+          - not_null
+
+  - name: user_events
+    columns: 
+      - name: _id #auto generated
+      - name: user_id # ref users
+      - name: method
+      - name: page_visited
+      - name: session_id
+      - name: status
+      - name: level_id # ref levels
+      - name: level
+      - name: user_agent # browsers (could be a new table)
+      - name: timestamp
+      - name: times_id # ref times
+      - name: item_in_session
+      - name: event # (listen?, page_view?, auth?)
+
+  - name: artists
+    columns:
+      - name: _id # auto generated
+        tests:
+          - unique
+          - not_null
+      - name: name
+        tests:
+          - unique
+          - not_null
+
+  - name: times
+    columns:
+      - name: _id # auto generated
+      - name: absolute_date
+      - name: timestamp
+      - name: month
+      - name: day
+      - name: hour
+      - name: minute
+      - name: second
+      - name: day_of_week
+      - name: is_weekend
+
+  - name: addresses
+    columns:
+        - name: _id
+        - name: city 
+        - name: state
