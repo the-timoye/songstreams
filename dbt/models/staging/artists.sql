@@ -17,5 +17,7 @@ all_artists AS (
     FROM page_view_events_artists
 )
 
-SELECT *
+SELECT {{ dbt_utils.surrogate_key(
+    'artist'
+  ) }} as _id, artist AS name
 FROM all_artists
