@@ -22,6 +22,12 @@ models:
   - name: users
     columns:
       - name: _id # not auto generated
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
       - name: first_name
       - name: last_name
       - name: full_name
