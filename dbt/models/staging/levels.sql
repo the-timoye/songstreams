@@ -23,5 +23,5 @@ WITH listen_event_levels AS (
 
  SELECT {{ dbt_utils.surrogate_key(
     'level'
-  ) }}, level
+  ) }} AS _id, level
  FROM all_event_levels
