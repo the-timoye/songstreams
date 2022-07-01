@@ -11,20 +11,15 @@ Some common question asked by the Business Intelligence team are:
 - Most played songs per location <br>
 
 ## Tools
-#### Infrastructure as Code (Provisioning)
-- Terraform
-#### Streaming 
-- Apache Kafka
-- Apache Spark
-#### Workflow Management
-- Apache Airflow
-#### Data Lake
-- AWS S3
-#### Data Warehouse
-- Amazon Redshift
+- Terraform (Infrastructure as Code)
+- Apache Kafka (Streaming)
+- Apache Spark (Streamed data processor)
+- Apache Airflow (Workflow management)
+- AWS S3 (Data lake)
+- Amazon Redshift (Data Warehouse)
 
 
-## Streamed Data Damples
+## Streamed Data Samples
 - [listen events](/kafka/README.md###listen_events)
 - [page view events](kafka/README.md###page_view_events)
 - [auth events](/kafka/README.md###auth_events)
@@ -35,16 +30,13 @@ All data in the lake (AWS S3) is stored in CSV format
 - [S3 schema](/lake/README.md#schema)
 
 ### Data Transformation - dbt
-- Stages: Staging, Production
-[Staging Schema](/dbt/models/staging/schema.yml)
-[Production Schema](/dbt/models/production)
-
-### Warehousing - AWS Redshift
-- [Warehouse Schema](/dbt/models/staging/schema.yml)
+- Stages:
+    - [Staging](/dbt/models/staging/schema.yml)
+    - [Production](/dbt/models/production)
+- ERD:
 ![ERD](/images/songstreams.jpeg)
 
 ## Analytics
-
 
 
 
