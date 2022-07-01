@@ -1,6 +1,13 @@
 # SONGSTREAMS
 Data Engineering on a simulated song streaming application with Kafka, PySpark, dbt, S3, Redshift.
 
+## Content:
+- [Tools](#tools)
+- [Data Samples](#streamed-data-samples)
+- [Data Representation & Transformation](#data-representation)
+- [Analytics](#analytics)
+- [How To Run This Project](#how-to-run-this-project)
+
 ### Assumption: 
 Streamify is a music streaming company that joys in the satisfaction of their users. The intelligence of the application is derived from the team of Data Techies who track, monitor, and filter out playlists uniquely for each user, making it less probable for a user to skip through a track because this app knows them so well.
 
@@ -26,7 +33,7 @@ Some common question asked by the Business Intelligence team are:
 
 
 ## Data Representation
-All data in the lake (AWS S3) is stored in CSV format
+All data in the lake (AWS S3) is stored in `CSV` format
 - [S3 schema](/lake/README.md#schema)
 
 ### Data Transformation - dbt
