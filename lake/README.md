@@ -14,18 +14,6 @@ For example, `ts`, `lon` and `lat` are renamed to `timestamp`, `longitude`, and 
 
 ### Schema
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-color:#bbb;border-spacing:0;}
-.tg td{background-color:#E0FFEB;border-color:#bbb;border-style:solid;border-width:1px;color:#594F4F;
-  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{background-color:#9DE0AD;border-color:#bbb;border-style:solid;border-width:1px;color:#493F3F;
-  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-9l13{border-color:#bbbbbb;font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-baqh{text-align:center;vertical-align:top}
-.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-0lax{text-align:left;vertical-align:top}
-.tg .tg-b1fc{border-color:#bbbbbb;text-align:center;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr>
