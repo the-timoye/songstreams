@@ -31,7 +31,23 @@ Some common question asked by the Business Intelligence team are:
 
 
 ## Data Representation
+All data in the lake (AWS S3) is stored in CSV format
 - [S3 schema](/lake/README.md#schema)
+
+### Data Transformation - dbt
+- Stages: Staging, Production
+[Staging Schema](/dbt/models/staging/schema.yml)
+[Production Schema](/dbt/models/production)
+
+### Warehousing - AWS Redshift
+- [Warehouse Schema](/dbt/models/staging/schema.yml)
+![ERD](/images/songstreams.jpeg)
+
+## Analytics
+
+
+
+
 
 
 ## How to run this project
