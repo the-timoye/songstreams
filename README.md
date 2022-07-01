@@ -23,6 +23,7 @@ Some common question asked by the Business Intelligence team are:
 - Apache Spark (Streamed data processor)
 - Apache Airflow (Workflow management)
 - AWS S3 (Data lake)
+- DBT (Data Transformation)
 - Amazon Redshift (Data Warehouse)
 
 
