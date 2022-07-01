@@ -47,7 +47,11 @@ models:
   - name: songs_played
     columns:
       - name: _id # auto generated
+        tests:
+          - unique
+          - not_null
       - name: song_id #ref songs table
+      - name: user_id
       - name: artist_id #ref artists table
       - name: session_id
       - name: duration
