@@ -18,6 +18,7 @@ KAFKA_PORT = os.getenv('KAFKA_PORT')
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-streaming-kafka-0-10_2.12:3.2.1,org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.1,org.apache.hadoop:hadoop-common:3.0.0,org.apache.hadoop:hadoop-client:3.0.0,org.apache.hadoop:hadoop-aws:3.0.0 pyspark-shell'
 
 spark = SparkSession.builder.appName("songstreams")\
+    .config("spark.driver.memory", "2g") \
     .config('spark.hadoop.fs.s3a.aws.credentials.provider', 'org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider')\
     .getOrCreate()
 
