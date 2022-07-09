@@ -3,7 +3,7 @@ from pyspark.sql.functions import (
     col, month,
     hour,
     dayofmonth,
-    col,
+    col, from_unixtime,
     year, dayofweek, date_trunc)
 
 from lake.helpers import rename_columns, string_decode
@@ -52,7 +52,8 @@ class Stream():
                         )
                         .select("data.*")
                         )
-        raw_response = raw_response.withColumn("ts", (col("ts")/1000).cast("timestamp"))\
+        raw_response = raw_response\
+            .withColumn("ts", from_unixtime(col('ts')/1000))\
             .withColumn("__year", year(col("ts")))\
             .withColumn("year", year(col("ts")))\
             .withColumn("month", month(col("ts")))\
