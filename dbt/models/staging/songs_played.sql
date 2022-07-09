@@ -1,8 +1,8 @@
-{{ config(sort=['user_id', 'absolute_date'], dist='song_id') }}
+{{ config(sort=['user_id', 'year', 'month', 'day'], dist='song_id') }}
 
 SELECT 
+    ROW_NUMBER() OVER() AS _id,
     songs._id AS song_id,
-    artists._id AS artist_id,
     pve.duration AS duration,
     levels._id as levels_id,
     users._id AS user_id,
@@ -12,6 +12,26 @@ SELECT
     le.latitude,
     le.timestamp AS timestamp,
     le.abs_date AS absolute_date,    
+    TO_NUMBER(SUBSTRING(le.timestamp, 1,4), 9999) AS year,
+    le.month,
+    le.day,
+    CASE
+        WHEN le.day_of_week = 1 THEN 'Sunday'
+        WHEN le.day_of_week = 2 THEN 'Monday'
+        WHEN le.day_of_week = 3 THEN 'Tueday'
+        WHEN le.day_of_week = 4 THEN 'Wednessday'
+        WHEN le.day_of_week = 5 THEN 'Thursday'
+        WHEN le.day_of_week = 6 THEN 'Friday'
+        WHEN le.day_of_week = 7 THEN 'Saturday'
+        ELSE 'N/A'
+        END AS roman_day_of_week,
+    le.hour,
+    TO_NUMBER(SUBSTRING(le.timestamp, 15,2), 99) AS minute,
+    TO_NUMBER(SUBSTRING(le.timestamp, 18,2), 99) AS second,
+    le.day_of_week,
+    le.is_weekend,
+    (le.day - (le.day_of_week - 1)) AS start_of_week,
+    ((le.day - (le.day_of_week - 1)) + 7) AS end_of_week,
     le.item_in_session,
     ae.success as is_authenticated,
     ae.timestamp as auth_at
@@ -22,8 +42,6 @@ ON le.city = addresses.city
 AND le.state = addresses.state
 JOIN {{ ref('songs') }} AS songs
 ON le.song = songs.title
-JOIN {{ ref('artists') }} as artists
-ON le.artist = artists.name
 JOIN {{ ref('levels') }} AS levels
 ON le.level = levels.level
 JOIN {{ ref('users') }} AS users
