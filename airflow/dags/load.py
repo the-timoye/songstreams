@@ -9,7 +9,7 @@ from helpers.sql.statements import Query
 
 S3_BUCKET = os.getenv("AWS_S3_BUCKET_CLEAN", "songstreams")
 S3_KEY__AUTH_EVENTS = os.getenv(
-    "AUTH_EVENTS", "clean/auth_events/__year=2022/__month=6")
+    "AUTH_EVENTS", "clean/auth_events/__year=")
 S3_KEY__LISTEN_EVENTS = os.getenv(
     "LISTEN_EVENTS", "clean/listen_events/__year=")
 S3_KEY__PAGE_VIEW_EVENTS = os.getenv(
