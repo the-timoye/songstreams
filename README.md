@@ -42,7 +42,7 @@ All data in the lake (AWS S3) is stored in `CSV` format
     - [Staging](/dbt/models/staging/schema.yml)
     - [Production](/dbt/models/production)
 - ERD:
-![ERD](/images/songstreams (1).jpeg)
+![ERD](/images/songstreams%20(1).jpeg)
 
 ## Analytics
 
