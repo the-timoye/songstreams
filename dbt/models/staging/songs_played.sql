@@ -32,9 +32,7 @@ SELECT
     le.is_weekend,
     (le.day - (le.day_of_week - 1)) AS start_of_week,
     ((le.day - (le.day_of_week - 1)) + 7) AS end_of_week,
-    le.item_in_session,
-    ae.success as is_authenticated,
-    ae.timestamp as auth_at
+    le.item_in_session
 
 FROM {{ source('dev', 'listen_events') }} as le
 JOIN {{ ref('addresses') }} as addresses
@@ -42,13 +40,12 @@ ON le.city = addresses.city
 AND le.state = addresses.state
 JOIN {{ ref('songs') }} AS songs
 ON le.song = songs.title
+AND songs.title <> 'N/A'
 JOIN {{ ref('levels') }} AS levels
 ON le.level = levels.level
 JOIN {{ ref('users') }} AS users
 ON le.user_id = users.user_id
+AND users.user_id <> -404
 JOIN {{ source('dev', 'page_view_events') }} AS pve
 ON le.session_id = pve.session_id
 AND le.user_id = pve.user_id
-JOIN {{ source('dev', 'auth_events') }} AS ae
-ON le.session_id = ae.session_id
-AND le.user_id = ae.user_id

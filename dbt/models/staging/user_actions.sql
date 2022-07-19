@@ -1,4 +1,5 @@
 {{ config(sort=['month', 'day', 'hour', 'minute', 'second'], dist='user_id') }}
+
 WITH listen_events AS (
     SELECT 
         le.timestamp AS time_stamp,
@@ -36,6 +37,7 @@ WITH listen_events AS (
     FROM {{ source('dev', 'listen_events') }} AS le
     JOIN {{ ref('users') }} AS users
     ON le.user_id = users.user_id
+    AND users.user_id <> -404
     JOIN {{ ref('addresses') }} AS addresses
     ON le.city = addresses.city
     AND le.state = addresses.state
@@ -79,6 +81,7 @@ auth_events AS (
     FROM {{ source('dev', 'auth_events') }} AS ae
     JOIN {{ ref('users') }} AS users
     ON ae.user_id = users.user_id
+    AND users.user_id <> -404
     JOIN {{ ref('addresses') }} AS addresses
     ON ae.city = addresses.city
     AND ae.state = addresses.state
@@ -122,6 +125,7 @@ page_view_events AS (
     FROM {{ source('dev', 'page_view_events') }} AS pve
     JOIN {{ ref('users') }} AS users
     ON pve.user_id = users.user_id
+    AND users.user_id <> -404
     JOIN {{ ref('addresses') }} AS addresses
     ON pve.city = addresses.city
     AND pve.state = addresses.state
