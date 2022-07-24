@@ -25,6 +25,7 @@ Some common question asked by the Business Intelligence team are:
 - AWS S3 (Data lake)
 - DBT (Data Transformation)
 - Amazon Redshift (Data Warehouse)
+![Engineering Tools](/images/Stream_eng_tools.jpg)
 
 
 ## Streamed Data Samples
